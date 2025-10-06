@@ -19,13 +19,13 @@ export default function Header() {
             <div className="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
               <div className="flex items-center justify-between w-full md:w-auto">
                 <a href="#" className="w-auto h-8 sm:h-10">
-                  <span className="sr-only">Overseerr</span>
+                  <span className="sr-only">Seerr</span>
                   <Image
                     src="/os_logo_filled.svg"
                     width={40}
                     height={40}
                     priority
-                    alt="Overseerr Logo"
+                    alt="Seerr Logo"
                   />
                 </a>
                 <div className="flex items-center -mr-2 md:hidden">
@@ -58,21 +58,21 @@ export default function Header() {
             </div>
             <div className="justify-end flex-1 hidden md:ml-10 md:pr-4 md:space-x-8 md:flex">
               <a
-                href="https://docs.overseerr.dev"
+                href="https://docs.seerr.dev"
                 className="font-medium text-gray-300 hover:text-white"
               >
                 Documentation
               </a>
 
               <a
-                href="https://github.com/sct/overseerr"
+                href="https://github.com/seerr-dev/seerr"
                 className="font-medium text-gray-300 hover:text-white"
               >
                 GitHub
               </a>
 
               <a
-                href="https://discord.gg/sZNaxsb6tc"
+                href="https://discord.gg/seerr"
                 className="font-medium text-gray-300 hover:text-white"
               >
                 Discord
@@ -96,13 +96,13 @@ export default function Header() {
             >
               <div className="flex items-center justify-between px-5 pt-4">
                 <a href="#" className="w-auto h-8">
-                  <span className="sr-only">Overseerr</span>
+                  <span className="sr-only">Seerr</span>
                   <Image
                     src="/os_logo_filled.svg"
                     width={40}
                     height={40}
                     priority
-                    alt="Overseerr Logo"
+                    alt="Seerr Logo"
                   />
                 </a>
                 <div className="-mr-2">
@@ -137,7 +137,7 @@ export default function Header() {
               >
                 <div className="px-2 pt-2 pb-3 space-y-1" role="none">
                   <a
-                    href="https://docs.overseerr.dev"
+                    href="https://docs.seerr.dev"
                     className="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:text-gray-100 hover:bg-gray-700"
                     role="menuitem"
                   >
@@ -145,7 +145,7 @@ export default function Header() {
                   </a>
 
                   <a
-                    href="https://github.com/sct/overseerr"
+                    href="https://github.com/seerr-dev/seerr"
                     className="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:text-gray-100 hover:bg-gray-50"
                     role="menuitem"
                   >
@@ -153,7 +153,7 @@ export default function Header() {
                   </a>
 
                   <a
-                    href="https://discord.gg/sZNaxsb6tc"
+                    href="https://discord.gg/seerr"
                     className="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:text-gray-100 hover:bg-gray-50"
                     role="menuitem"
                   >

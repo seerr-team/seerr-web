@@ -16,7 +16,7 @@ const features = [
   {
     name: 'Easy Request Management',
     description:
-      'Approving and declining requests is fast and straightforward. Open Overseerr, approve, and move on.',
+      'Approving and declining requests is fast and straightforward. Open Seerr, approve, and move on.',
     icon: InboxIcon,
   },
   {
@@ -28,7 +28,7 @@ const features = [
   {
     name: 'DVR Integration',
     description:
-      'We fully integrate with the popular DVR applications Radarr and Sonarr, and support activity monitoring within Overseerr itself!',
+      'We fully integrate with the popular DVR applications Radarr and Sonarr, and support activity monitoring within Seerr itself!',
     icon: VideoCameraIcon,
   },
   {
@@ -44,9 +44,9 @@ const features = [
     ),
   },
   {
-    name: 'Plex Library Scanning',
+    name: 'Plex/Jellyfin Library Scanning',
     description:
-      'Overseerr scans your Plex libraries at regular intervals, so it knows which items are already available on your server.',
+      'Seerr scans your Plex/Jellyfin libraries at regular intervals, so it knows which items are already available on your server.',
     image: (
       <img
         src="/icons/plex.svg"
@@ -64,7 +64,7 @@ const features = [
   {
     name: 'Mobile-Friendly Experience',
     description:
-      'Use Overseerr as a near-native mobile app by adding it to your home screen. Overseerr is designed for use on any screen size.',
+      'Use Seerr as a near-native mobile app by adding it to your home screen. Seerr is designed for use on any screen size.',
     icon: DeviceMobileIcon,
   },
   {
@@ -86,26 +86,26 @@ const faqs: FAQItem[] = [
     id: 1,
     question: 'Is there support for other languages?',
     answer:
-      'Overseerr has already localized into several languages thanks to the community! If your language has not been added yet, we are always accepting new translations!',
+      'Seerr has already localized into several languages thanks to the community! If your language has not been added yet, we are always accepting new translations!',
   },
   {
     id: 2,
     question: 'Is there support for local users?',
     answer:
-      'You can create local users alongside Plex OAuth-based users. You can use this feature to give access to Overseerr to your Plex home users.',
+      'You can create local users alongside Plex OAuth-based or Jellyfin users. You can use this feature to give access to Seerr to your Plex home users.',
   },
   {
     id: 3,
-    question: 'Does Overseerr support the new Plex Movie/TV agents?',
+    question: 'Does Seerr support the new Plex Movie/TV agents?',
     answer:
       'Yes! We have full support for both the new Plex Movie Agent and the new Plex TV Agent!',
   },
   {
     id: 4,
-    question: 'Does Overseerr support anime agents?',
+    question: 'Does Seerr support anime agents?',
     answer: (
       <span>
-        Overseerr currently has full support for{' '}
+        Seerr currently has full support for{' '}
         <a
           href="https://github.com/ZeroQI/Hama.bundle"
           target="_blank"
@@ -114,7 +114,7 @@ const faqs: FAQItem[] = [
         >
           HAMA
         </a>
-        .
+        {' '}for Plex and AniDB for Jellyfin.
       </span>
     ),
   },
@@ -126,9 +126,9 @@ const faqs: FAQItem[] = [
   },
   {
     id: 6,
-    question: 'Can I import my Plex users?',
+    question: 'Can I import my Plex/Jellyfin users?',
     answer:
-      'Yes, of course! Any Plex account with access to your Plex server can log in without being imported.',
+      'Yes, of course! Any Plex/Jellyfin account with access to your Plex/Jellyfin server can log in without being imported.',
   },
 ];
 
@@ -145,8 +145,8 @@ const IndexPage: NextPage = () => {
               </span>
             </h1>
             <p className="mt-3 text-base text-center text-gray-400 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-              Overseerr is a request management and media discovery tool built
-              to work with your existing Plex ecosystem.
+              Seerr is a request management and media discovery tool built
+              to work with your existing Plex/Jellyfin ecosystem.
             </p>
             <div className="w-full overflow-hidden bg-gray-800 rounded-md shadow-2xl md:rounded-xl">
               <Image
@@ -178,7 +178,7 @@ const IndexPage: NextPage = () => {
                     The best way to discover media
                   </h2>
                   <p className="mt-4 text-lg text-gray-400">
-                    Overseerr helps you find media you{' '}
+                    Seerr helps you find media you{' '}
                     <em className="font-bold">want</em> to watch. With inline
                     recommendations and suggestions, you will find yourself
                     deeper and deeper in a rabbit hole of content you never knew
@@ -226,7 +226,7 @@ const IndexPage: NextPage = () => {
                     Requesting has never been so easy
                   </h2>
                   <p className="mt-4 text-lg text-gray-400">
-                    Overseerr presents you and your users with a request interface
+                    Seerr presents you and your users with a request interface
                     that is incredibly easy to understand and use. Users can
                     select the exact seasons they want to watch. Advanced users
                     can use the &ldquo;Advanced Requests&rdquo; options to change destination
@@ -253,7 +253,7 @@ const IndexPage: NextPage = () => {
             A request system built for ease of use
           </h2>
           <p className="max-w-3xl mt-4 text-lg text-indigo-200">
-            Overseerr aims to make you and your user&apos;s lives more effortless
+            Seerr aims to make you and your user&apos;s lives more effortless
             than ever before. Here are some other useful features we support:
           </p>
           <div className="grid grid-cols-1 mt-12 gap-x-6 gap-y-12 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4 lg:gap-x-8 lg:gap-y-16">
@@ -312,19 +312,19 @@ const IndexPage: NextPage = () => {
                   <span className="block">Sound awesome?</span>
                 </h2>
                 <p className="mt-4 text-lg leading-6 text-indigo-200">
-                  Overseerr is easy to get up and running with Docker. We also
+                  Seerr is easy to get up and running with Docker. We also
                   support other installation methods, which you can find in our
                   documentation. If you need help, feel free to reach out
                   in our support channels, such as Discord.
                 </p>
                 <a
-                  href="https://docs.overseerr.dev/getting-started/installation"
+                  href="https://docs.seerr.dev/getting-started"
                   className="inline-flex items-center px-5 py-3 mt-8 mr-2 text-base font-medium text-indigo-600 bg-white border border-transparent rounded-md shadow hover:bg-indigo-50"
                 >
                   Installation
                 </a>
                 <a
-                  href="https://docs.overseerr.dev/"
+                  href="https://docs.seerr.dev/"
                   className="inline-flex items-center px-5 py-3 mt-8 text-base font-medium text-indigo-600 bg-white border border-transparent rounded-md shadow hover:bg-indigo-50"
                 >
                   Documentation

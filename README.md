@@ -1,1 +1,1 @@
-# Overseerr Web
+# Seerr Web
