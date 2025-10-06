@@ -21,7 +21,7 @@
   "homepage": "https://github.com/taylorbryant/next-starter-tailwind#readme",
   "dependencies": {
     "@heroicons/react": "^1.0.1",
-    "next": "11.0.1",
+    "next": "14.2.32",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-transition-group": "^4.4.2"
