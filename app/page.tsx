@@ -1,5 +1,5 @@
-import { NextPage } from 'next';
 import Image from 'next/legacy/image';
+import React from 'react';
 import {
   ClockIcon,
   SparklesIcon,
@@ -10,7 +10,6 @@ import {
   VideoCameraIcon,
   BellIcon,
 } from '@heroicons/react/outline';
-import React from 'react';
 
 const features = [
   {
@@ -132,7 +131,7 @@ const faqs: FAQItem[] = [
   },
 ];
 
-const IndexPage: NextPage = () => {
+export default function Page() {
   return (
     <>
       <div className="flex flex-col mx-auto max-w-7xl">
@@ -176,7 +175,7 @@ const IndexPage: NextPage = () => {
                   </span>
                 </div>
                 <div className="mt-6">
-                  <h2 className="text-3xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-indigo-500 to-purple-300">
+                  <h2 className="text-3xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-indigo-500 to purple-300">
                     The best way to discover media
                   </h2>
                   <p className="mt-4 text-lg text-gray-400">
@@ -255,8 +254,8 @@ const IndexPage: NextPage = () => {
             A request system built for ease of use
           </h2>
           <p className="max-w-3xl mt-4 text-lg text-indigo-200">
-            Seerr aims to make you and your user&apos;s lives more effortless
-            than ever before. Here are some other useful features we support:
+            Seerr aims to make you and your user's lives more effortless than
+            ever before. Here are some other useful features we support:
           </p>
           <div className="grid grid-cols-1 mt-12 gap-x-6 gap-y-12 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4 lg:gap-x-8 lg:gap-y-16">
             {features.map((feature) => (
@@ -345,6 +344,4 @@ const IndexPage: NextPage = () => {
       </div>
     </>
   );
-};
-
-export default IndexPage;
+}
