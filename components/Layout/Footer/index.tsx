@@ -23,7 +23,7 @@ export default function Footer() {
 
           <li className="flex items-center space-x-6">
             <a
-              href="https://github.com/sct/overseerr"
+              href="https://github.com/seerr-team/seerr"
               target="_blank"
               rel="noopener noreferrer"
               className="font-bold"
@@ -31,18 +31,12 @@ export default function Footer() {
               GitHub
             </a>
             <a
-              href="https://discord.gg/sZNaxsb6tc"
+              href="https://discord.gg/seerr"
               target="_blank"
               rel="noopener noreferrer"
               className="font-bold"
             >
               Discord
-            </a>
-            <a href="https://splitbee.io/?ref=badge">
-              <img
-                src="https://splitbee-cdn.fra1.cdn.digitaloceanspaces.com/static/badge/splitbee-badge.svg"
-                alt="Analytics by Splitbee.io"
-              />
             </a>
           </li>
         </ul>
