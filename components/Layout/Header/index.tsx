@@ -65,7 +65,7 @@ export default function Header() {
               </a>
 
               <a
-                href="https://github.com/seerr-dev/seerr"
+                href="https://github.com/seerr-team/seerr"
                 className="font-medium text-gray-300 hover:text-white"
               >
                 GitHub
