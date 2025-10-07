@@ -145,7 +145,7 @@ export default function Header() {
                   </a>
 
                   <a
-                    href="https://github.com/seerr-dev/seerr"
+                    href="https://github.com/seerr-team/seerr"
                     className="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:text-gray-100 hover:bg-gray-50"
                     role="menuitem"
                   >
