@@ -1,17 +1,19 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@plugin "@tailwindcss/forms";
+@plugin "@tailwindcss/typography";
+@plugin "@tailwindcss/aspect-ratio";
 
 body {
-    @apply text-white bg-gray-900;
+  @apply text-white bg-gray-900;
 }
 
 .image-fader {
-    height: 600px;
+  height: 600px;
 }
 
 @screen md {
-    .image-fader {
-        height: 800px;
-    }
+  .image-fader {
+    height: 800px;
+  }
 }
