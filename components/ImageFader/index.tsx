@@ -4,7 +4,7 @@ import React, {
   HTMLAttributes,
   ForwardRefRenderFunction,
 } from 'react';
-import Image from "next/legacy/image";
+import Image from 'next/legacy/image';
 
 interface ImageFaderProps extends HTMLAttributes<HTMLDivElement> {
   backgroundImages: string[];
