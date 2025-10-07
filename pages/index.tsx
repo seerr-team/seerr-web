@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import {
   ClockIcon,
   SparklesIcon,
@@ -113,8 +113,8 @@ const faqs: FAQItem[] = [
           className="text-white underline"
         >
           HAMA
-        </a>
-        {' '}for Plex and AniDB for Jellyfin.
+        </a>{' '}
+        for Plex and AniDB for Jellyfin.
       </span>
     ),
   },
@@ -139,14 +139,16 @@ const IndexPage: NextPage = () => {
         <div className="z-40 flex-1 px-4 pt-6 pb-24 md:px-6 md:py-12">
           <div className="relative z-50 flex flex-col items-center justify-center mx-auto space-y-12">
             <h1 className="text-4xl font-extrabold tracking-tight text-center text-gray-100 sm:text-5xl md:text-6xl">
-              <span className="block leading-tight xl:inline">Beautiful Media Discovery</span>
+              <span className="block leading-tight xl:inline">
+                Beautiful Media Discovery
+              </span>
               <span className="block leading-tight text-transparent bg-clip-text bg-gradient-to-br from-indigo-500 to-purple-300">
                 Simple Request Management
               </span>
             </h1>
             <p className="mt-3 text-base text-center text-gray-400 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-              Seerr is a request management and media discovery tool built
-              to work with your existing Plex/Jellyfin ecosystem.
+              Seerr is a request management and media discovery tool built to
+              work with your existing Plex/Jellyfin ecosystem.
             </p>
             <div className="w-full overflow-hidden bg-gray-800 rounded-md shadow-2xl md:rounded-xl">
               <Image
@@ -229,8 +231,8 @@ const IndexPage: NextPage = () => {
                     Seerr presents you and your users with a request interface
                     that is incredibly easy to understand and use. Users can
                     select the exact seasons they want to watch. Advanced users
-                    can use the &ldquo;Advanced Requests&rdquo; options to change destination
-                    folders and quality profiles.
+                    can use the &ldquo;Advanced Requests&rdquo; options to
+                    change destination folders and quality profiles.
                   </p>
                 </div>
               </div>
@@ -260,7 +262,7 @@ const IndexPage: NextPage = () => {
             {features.map((feature) => (
               <div key={feature.name}>
                 <div>
-                  <span className="flex items-center justify-center w-12 h-12 bg-white rounded-md bg-opacity-10">
+                  <span className="flex items-center justify-center w-12 h-12 bg-gray-900 rounded-md bg-opacity-10">
                     {feature.image ? (
                       feature.image
                     ) : (
@@ -314,8 +316,8 @@ const IndexPage: NextPage = () => {
                 <p className="mt-4 text-lg leading-6 text-indigo-200">
                   Seerr is easy to get up and running with Docker. We also
                   support other installation methods, which you can find in our
-                  documentation. If you need help, feel free to reach out
-                  in our support channels, such as Discord.
+                  documentation. If you need help, feel free to reach out in our
+                  support channels, such as Discord.
                 </p>
                 <a
                   href="https://docs.seerr.dev/getting-started"
