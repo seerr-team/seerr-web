@@ -254,8 +254,8 @@ export default function Page() {
             A request system built for ease of use
           </h2>
           <p className="max-w-3xl mt-4 text-lg text-indigo-200">
-            Seerr aims to make you and your user's lives more effortless than
-            ever before. Here are some other useful features we support:
+            Seerr aims to make you and your user&apos;s lives more effortless
+            than ever before. Here are some other useful features we support:
           </p>
           <div className="grid grid-cols-1 mt-12 gap-x-6 gap-y-12 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4 lg:gap-x-8 lg:gap-y-16">
             {features.map((feature) => (
