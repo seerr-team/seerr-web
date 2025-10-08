@@ -175,7 +175,7 @@ export default function Page() {
                   </span>
                 </div>
                 <div className="mt-6">
-                  <h2 className="text-3xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-indigo-500 to purple-300">
+                  <h2 className="text-3xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-indigo-500 to-purple-300">
                     The best way to discover media
                   </h2>
                   <p className="mt-4 text-lg text-gray-400">
