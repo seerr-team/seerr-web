@@ -1,5 +1,5 @@
-import { NextPage } from 'next';
 import Image from 'next/legacy/image';
+import React from 'react';
 import {
   ClockIcon,
   SparklesIcon,
@@ -10,7 +10,6 @@ import {
   VideoCameraIcon,
   BellIcon,
 } from '@heroicons/react/outline';
-import React from 'react';
 
 const features = [
   {
@@ -132,7 +131,7 @@ const faqs: FAQItem[] = [
   },
 ];
 
-const IndexPage: NextPage = () => {
+export default function Page() {
   return (
     <>
       <div className="flex flex-col mx-auto max-w-7xl">
@@ -345,6 +344,4 @@ const IndexPage: NextPage = () => {
       </div>
     </>
   );
-};
-
-export default IndexPage;
+}
