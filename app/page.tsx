@@ -43,9 +43,9 @@ const features = [
     ),
   },
   {
-    name: 'Plex/Jellyfin Library Scanning',
+    name: 'Jellyfin/Emby/Plex Library Scanning',
     description:
-      'Seerr scans your Plex/Jellyfin libraries at regular intervals, so it knows which items are already available on your server.',
+      'Seerr scans your Jellyfin/Emby/Plex libraries at regular intervals, so it knows which items are already available on your server.',
     image: (
       <img
         src="/icons/plex.svg"
@@ -125,9 +125,9 @@ const faqs: FAQItem[] = [
   },
   {
     id: 6,
-    question: 'Can I import my Plex/Jellyfin users?',
+    question: 'Can I import my Jellyfin/Emby/Plex users?',
     answer:
-      'Yes, of course! Any Plex/Jellyfin account with access to your Plex/Jellyfin server can log in without being imported.',
+      'Yes, of course! Any Jellyfin/Emby/Plex account with access to your Jellyfin/Emby/Plex server can log in without being imported.',
   },
 ];
 
@@ -147,7 +147,7 @@ export default function Page() {
             </h1>
             <p className="mt-3 text-base text-center text-gray-400 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
               Seerr is a request management and media discovery tool built to
-              work with your existing Plex/Jellyfin ecosystem.
+              work with your existing Jellyfin/Emby/Plex ecosystem.
             </p>
             <div className="w-full overflow-hidden bg-gray-800 rounded-md shadow-2xl md:rounded-xl">
               <Image
