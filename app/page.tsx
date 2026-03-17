@@ -224,7 +224,7 @@ export default function Page() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
               </span>
-              Version 3.1.0 - Now with Emby Support
+              The Evolution of Overseerr & Jellyseerr
             </div>
 
             <h1 className="text-4xl font-extrabold tracking-tight text-center text-gray-100 sm:text-5xl md:text-6xl lg:text-7xl">
