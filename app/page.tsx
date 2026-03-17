@@ -1,5 +1,5 @@
 import React from 'react';
-import ReleaseBadge from '@/components/ReleaseBadge';
+import ReleaseBadge from '@components/ReleaseBadge';
 import {
   ClockIcon,
   SparklesIcon,

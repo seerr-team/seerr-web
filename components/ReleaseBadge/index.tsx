@@ -1,4 +1,4 @@
-import { getReleaseSummary } from '@/app/actions/get-release-summary';
+import { getReleaseSummary } from '../../app/actions/get-release-summary';
 
 interface ReleaseBadgeProps {
   fallbackText?: string;
