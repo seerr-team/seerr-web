@@ -195,10 +195,10 @@ const getCachedReleaseSummary = unstable_cache(
       return null;
     }
   },
-  ['release-summary'],
+['release-summary-v2'],
   {
     revalidate: 3600, // Cache for 1 hour
-    tags: ['release-summary'],
+    tags: ['release-summary-v2'],
   }
 );
 
