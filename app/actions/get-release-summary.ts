@@ -74,9 +74,51 @@ async function fetchLatestReleases(): Promise<GitHubRelease[]> {
 }
 
 /**
+ * Extract a short tagline from release notes without AI
+ * Looks for common patterns in changelogs
+ */
+function extractTaglineFromNotes(releaseBody: string): string | null {
+  if (!releaseBody) return null;
+  
+  // Common patterns to look for in release notes
+  const patterns = [
+    /##\s*(?:Highlights?|What's New|Features?)\s*\n+[*-]?\s*(.+)/i,
+    /###?\s*(?:Added|New)\s*\n+[*-]\s*(.+)/i,
+    /[*-]\s*(?:Add(?:ed)?|New|Introduce[ds]?|Support(?:s|ed)?)\s+(.+?)(?:\n|$)/i,
+  ];
+  
+  for (const pattern of patterns) {
+    const match = releaseBody.match(pattern);
+    if (match && match[1]) {
+      let tagline = match[1].trim();
+      // Clean up markdown and limit length
+      tagline = tagline
+        .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // Remove markdown links
+        .replace(/[`*_]/g, '') // Remove markdown formatting
+        .replace(/\s+/g, ' ') // Normalize whitespace
+        .trim();
+      
+      // Limit to reasonable length (around 8 words)
+      const words = tagline.split(' ').slice(0, 8);
+      return words.join(' ');
+    }
+  }
+  
+  return null;
+}
+
+/**
  * Generate a catchy tagline from release notes using AI
+ * Falls back to extracting from notes or generic tagline
  */
 async function generateTagline(releaseName: string, releaseBody: string): Promise<string> {
+  // First try to extract from release notes (no AI needed)
+  const extractedTagline = extractTaglineFromNotes(releaseBody);
+  if (extractedTagline) {
+    return extractedTagline;
+  }
+  
+  // Try AI generation if available
   try {
     const { text } = await generateText({
       model: 'openai/gpt-4o-mini',
@@ -101,8 +143,14 @@ Your tagline:`,
     return text.trim().replace(/^["']|["']$/g, '').replace(/[.!]$/, '');
   } catch (error) {
     console.error('Failed to generate AI tagline:', error);
-    // Fallback to release name or generic tagline
-    return releaseName || 'New Features Available';
+    
+    // Try to use the release name if it's descriptive
+    if (releaseName && releaseName.toLowerCase() !== releaseName.replace(/[^\d.]/g, '')) {
+      // Release name has more than just version number
+      return releaseName.replace(/^v?\d+\.\d+\.\d+\s*[-:]?\s*/i, '').trim() || 'New Features & Improvements';
+    }
+    
+    return 'New Features & Improvements';
   }
 }
 
