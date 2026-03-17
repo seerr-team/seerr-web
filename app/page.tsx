@@ -9,7 +9,6 @@ import {
   VideoCameraIcon,
   BellIcon,
   ServerIcon,
-  ShieldCheckIcon,
   HeartIcon,
   CodeIcon,
   LightningBoltIcon,
@@ -647,21 +646,6 @@ export default function Page() {
         </div>
       </section>
 
-      {/* MIT License Badge */}
-      <section className="py-8 border-t border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-center gap-4 text-gray-500 text-sm">
-            <div className="flex items-center gap-2">
-              <ShieldCheckIcon className="w-5 h-5" />
-              <span>MIT License</span>
-            </div>
-            <span className="text-gray-700">•</span>
-            <span>Free &amp; Open Source</span>
-            <span className="text-gray-700">•</span>
-            <span>Made with love by the community</span>
-          </div>
-        </div>
-      </section>
     </>
   );
 }
