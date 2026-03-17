@@ -1,4 +1,5 @@
 import React from 'react';
+import ReleaseBadge from '@/components/ReleaseBadge';
 import {
   ClockIcon,
   SparklesIcon,
@@ -218,13 +219,9 @@ export default function Page() {
       <section className="flex flex-col mx-auto max-w-7xl">
         <div className="z-40 flex-1 px-4 pt-6 pb-16 md:px-6 md:py-12">
           <div className="relative z-50 flex flex-col items-center justify-center mx-auto">
-            {/* Badge */}
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-indigo-500/10 border border-indigo-500/20 px-4 py-2 text-sm text-indigo-300">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
-              </span>
-              The Evolution of Overseerr & Jellyseerr
+            {/* Dynamic Release Badge */}
+            <div className="mb-6">
+              <ReleaseBadge />
             </div>
 
             <h1 className="text-4xl font-extrabold tracking-tight text-center text-gray-100 sm:text-5xl md:text-6xl lg:text-7xl">

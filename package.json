@@ -21,7 +21,9 @@
   "homepage": "https://github.com/taylorbryant/next-starter-tailwind#readme",
   "packageManager": "pnpm@9.12.2",
   "dependencies": {
+    "@ai-sdk/react": "^3.0.0",
     "@heroicons/react": "^1.0.1",
+    "ai": "^6.0.0",
     "@tailwindcss/postcss": "^4.1.14",
     "next": "15.5.4",
     "postcss": "^8.5.6",
