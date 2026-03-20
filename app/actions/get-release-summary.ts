@@ -9,6 +9,8 @@ interface GitHubRelease {
   body: string;
   published_at: string;
   html_url: string;
+  draft: boolean;
+  prerelease: boolean;
 }
 
 interface ReleaseSummary {
@@ -66,7 +68,34 @@ function isFeatureRelease(
 /**
  * Fetch the latest releases from GitHub
  */
-async function fetchLatestReleases(perPage: number): Promise<GitHubRelease[]> {
+const GITHUB_FETCH_TIMEOUT_MS = 5000;
+const AI_TAGLINE_TIMEOUT_MS = 5000;
+const DEFAULT_RELEASE_SCAN_WINDOW = 25;
+
+function getReleaseScanWindow(): number {
+  const rawValue = process.env.RELEASE_SCAN_WINDOW;
+  if (!rawValue) return DEFAULT_RELEASE_SCAN_WINDOW;
+
+  const parsedValue = parseInt(rawValue, 10);
+  if (Number.isNaN(parsedValue)) return DEFAULT_RELEASE_SCAN_WINDOW;
+
+  // GitHub API max per_page is 100.
+  return Math.min(Math.max(parsedValue, 1), 100);
+}
+
+function canGenerateTaglineWithAI(): boolean {
+  const model = process.env.RELEASE_TAGLINE_MODEL || 'openai/gpt-4o-mini';
+  const hasApiKey = Boolean(
+    process.env.OPENAI_API_KEY ||
+      process.env.AI_GATEWAY_API_KEY ||
+      process.env.OPENROUTER_API_KEY
+  );
+  return Boolean(model) && hasApiKey;
+}
+
+async function fetchLatestReleases(
+  perPage: number = getReleaseScanWindow()
+): Promise<GitHubRelease[]> {
   const fetchOptions: NextFetchOptions = {
     headers: {
       Accept: 'application/vnd.github.v3+json',
@@ -77,17 +106,24 @@ async function fetchLatestReleases(perPage: number): Promise<GitHubRelease[]> {
     },
     next: { revalidate: 86400 }, // Cache for 24 hours
   };
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), GITHUB_FETCH_TIMEOUT_MS);
 
-  const response = await fetch(
-    `https://api.github.com/repos/seerr-team/seerr/releases?per_page=${perPage}`,
-    fetchOptions
-  );
+  try {
+    const response = await fetch(
+      `https://api.github.com/repos/seerr-team/seerr/releases?per_page=${perPage}`,
+      { ...fetchOptions, signal: controller.signal }
+    );
 
-  if (!response.ok) {
-    throw new Error(`GitHub API error: ${response.status}`);
+    if (!response.ok) {
+      throw new Error(`GitHub API error: ${response.status}`);
+    }
+
+    const releases = (await response.json()) as GitHubRelease[];
+    return releases.filter((release) => !release.draft && !release.prerelease);
+  } finally {
+    clearTimeout(timeout);
   }
-
-  return response.json();
 }
 
 /**
@@ -138,35 +174,7 @@ async function generateTagline(
     return extractedTagline;
   }
 
-  // Try AI generation if available
-  try {
-    const { text } = await generateText({
-      model: 'openai/gpt-4o-mini',
-      maxOutputTokens: 50,
-      prompt: `You are writing a short, catchy tagline for a software release badge on a marketing website.
-
-Release Name: ${releaseName}
-Release Notes:
-${releaseBody.slice(0, 2000)}
-
-Generate a single short tagline (5-8 words max) that highlights the most exciting new feature or improvement. 
-Be concise and engaging. Don't use quotes or punctuation at the end.
-Examples of good taglines:
-- "Now with Multi-Server Support"
-- "Introducing Advanced Search Filters"
-- "Faster Performance & New UI"
-- "Full Anime Support is Here"
-
-Your tagline:`,
-    });
-
-    return text
-      .trim()
-      .replace(/^["']|["']$/g, '')
-      .replace(/[.!]$/, '');
-  } catch (error) {
-    console.error('Failed to generate AI tagline:', error);
-
+  const fallbackTagline = (): string => {
     // Try to use the release name if it's descriptive
     if (
       releaseName &&
@@ -180,6 +188,48 @@ Your tagline:`,
     }
 
     return 'New Features & Improvements';
+  };
+
+  if (!canGenerateTaglineWithAI()) {
+    return fallbackTagline();
+  }
+
+  // Try AI generation if available
+  try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), AI_TAGLINE_TIMEOUT_MS);
+    const model = process.env.RELEASE_TAGLINE_MODEL || 'openai/gpt-4o-mini';
+
+    const { text } = await generateText({
+      model,
+      maxOutputTokens: 50,
+      abortSignal: controller.signal,
+      prompt: `You are writing a short, catchy tagline for a software release badge on a marketing website.
+
+Release Name: ${releaseName}
+Release Notes:
+${releaseBody.slice(0, 2000)}
+
+Generate a single short tagline (5-8 words max) that prioritizes user-facing FEATURES from the release notes when present.
+If feature additions are available, focus on those and avoid centering bug fixes.
+Only mention bug fixes when no meaningful new features are described.
+Be concise and engaging. Don't use quotes or punctuation at the end.
+Examples of good taglines:
+- "Now with Multi-Server Support"
+- "Introducing Advanced Search Filters"
+- "Faster Performance & New UI"
+- "Full Anime Support is Here"
+
+Your tagline:`,
+    }).finally(() => clearTimeout(timeout));
+
+    return text
+      .trim()
+      .replace(/^["']|["']$/g, '')
+      .replace(/[.!]$/, '');
+  } catch (error) {
+    console.error('Failed to generate AI tagline:', error);
+    return fallbackTagline();
   }
 }
 
@@ -194,7 +244,7 @@ const getCachedReleaseSummary = unstable_cache(
       // release is a patch, we still want the latest preceding minor/major.
       //
       // Fetch enough releases to cover typical sequences of patch releases.
-      const releases = await fetchLatestReleases(10);
+      const releases = await fetchLatestReleases();
 
       if (!releases || releases.length === 0) {
         return null;
