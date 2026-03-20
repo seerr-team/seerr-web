@@ -72,7 +72,7 @@ const CSSTransition: React.FC<CSSTransitionProps> = ({
       nodeRef={nodeRef as unknown as React.RefObject<HTMLElement>}
       addEndListener={(done) => {
         const el = nodeRef.current;
-        el?.addEventListener('transitionend', done, false);
+        el?.addEventListener('transitionend', done, { once: true });
       }}
       onEnter={() => {
         const node = nodeRef.current;

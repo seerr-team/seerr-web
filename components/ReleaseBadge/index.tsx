@@ -4,8 +4,8 @@ interface ReleaseBadgeProps {
   fallbackText?: string;
 }
 
-export default async function ReleaseBadge({ 
-  fallbackText = 'The Evolution of Overseerr & Jellyseerr' 
+export default async function ReleaseBadge({
+  fallbackText = 'The Evolution of Overseerr & Jellyseerr',
 }: ReleaseBadgeProps) {
   const release = await getReleaseSummary();
 
@@ -23,7 +23,7 @@ export default async function ReleaseBadge({
   }
 
   return (
-    <a 
+    <a
       href={release.url}
       target="_blank"
       rel="noopener noreferrer"
@@ -35,14 +35,21 @@ export default async function ReleaseBadge({
       </span>
       <span className="font-semibold">v{release.version}</span>
       <span className="text-gray-400">-</span>
-      <span className="group-hover:text-indigo-200 transition-colors">{release.tagline}</span>
-      <svg 
-        className="w-4 h-4 opacity-60 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" 
-        fill="none" 
-        viewBox="0 0 24 24" 
+      <span className="group-hover:text-indigo-200 transition-colors">
+        {release.tagline}
+      </span>
+      <svg
+        className="w-4 h-4 opacity-60 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all"
+        fill="none"
+        viewBox="0 0 24 24"
         stroke="currentColor"
       >
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M9 5l7 7-7 7"
+        />
       </svg>
     </a>
   );

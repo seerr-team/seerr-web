@@ -79,27 +79,27 @@ const integrations = [
   {
     name: 'Jellyfin',
     description: 'Full authentication and library sync support',
-    logo: '/integrations/jellyfin.svg',
+    logo: '/icons/jellyfin-icon.svg',
   },
   {
     name: 'Plex',
     description: 'Native OAuth login and library scanning',
-    logo: '/integrations/plex.svg',
+    logo: '/icons/plex.svg',
   },
   {
     name: 'Emby',
     description: 'Seamless integration with your Emby server',
-    logo: '/integrations/emby.svg',
+    logo: '/icons/emby-icon-only.svg',
   },
   {
     name: 'Radarr',
     description: 'Automatic movie request handling',
-    logo: '/integrations/radarr.svg',
+    logo: '/icons/radarr.svg',
   },
   {
     name: 'Sonarr',
     description: 'Automatic TV series request handling',
-    logo: '/integrations/sonarr.svg',
+    logo: '/icons/sonarr.svg',
   },
 ];
 
@@ -156,7 +156,7 @@ const faqs: FAQItem[] = [
     id: 1,
     question: 'What makes Seerr different from Overseerr or Jellyseerr?',
     answer:
-      'Seerr combines the best features of both projects while adding support for all three major media servers: Jellyfin, Plex, and Emby. It\'s a unified solution actively maintained by the community.',
+      "Seerr combines the best features of both projects while adding support for all three major media servers: Jellyfin, Plex, and Emby. It's a unified solution actively maintained by the community.",
   },
   {
     id: 2,
@@ -168,7 +168,7 @@ const faqs: FAQItem[] = [
     id: 3,
     question: 'Is there support for other languages?',
     answer:
-      'Seerr has been localized into over 25 languages thanks to our amazing community! If your language hasn\'t been added yet, we welcome new translations.',
+      "Seerr has been localized into over 25 languages thanks to our amazing community! If your language hasn't been added yet, we welcome new translations.",
   },
   {
     id: 4,
@@ -231,10 +231,13 @@ export default function Page() {
                 Simple Request Management
               </span>
             </h1>
-            
+
             <p className="mt-6 text-lg text-center text-gray-400 sm:text-xl max-w-3xl mx-auto text-balance">
-              Seerr is a free, open-source request management and media discovery tool 
-              that works seamlessly with your <strong className="text-gray-200">Jellyfin</strong>, <strong className="text-gray-200">Plex</strong>, or <strong className="text-gray-200">Emby</strong> server.
+              Seerr is a free, open-source request management and media
+              discovery tool that works seamlessly with your{' '}
+              <strong className="text-gray-200">Jellyfin</strong>,{' '}
+              <strong className="text-gray-200">Plex</strong>, or{' '}
+              <strong className="text-gray-200">Emby</strong> server.
             </p>
 
             {/* CTA Buttons */}
@@ -244,16 +247,34 @@ export default function Page() {
                 className="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-white rounded-lg bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 transition-all shadow-lg shadow-indigo-500/25"
               >
                 Get Started
-                <svg className="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                <svg
+                  className="ml-2 w-5 h-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 7l5 5m0 0l-5 5m5-5H6"
+                  />
                 </svg>
               </a>
               <a
                 href="https://github.com/seerr-team/seerr"
                 className="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-gray-300 rounded-lg border border-gray-600 hover:border-gray-500 hover:bg-gray-800/50 transition-all"
               >
-                <svg className="mr-2 w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+                <svg
+                  className="mr-2 w-5 h-5"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                    clipRule="evenodd"
+                  />
                 </svg>
                 View on GitHub
               </a>
@@ -268,7 +289,9 @@ export default function Page() {
                     idx === stats.length - 1 ? 'col-span-2 md:col-span-1' : ''
                   }`}
                 >
-                  <div className="text-3xl font-bold text-white">{stat.value}</div>
+                  <div className="text-3xl font-bold text-white">
+                    {stat.value}
+                  </div>
                   <div className="text-sm text-gray-400">{stat.label}</div>
                 </div>
               ))}
@@ -294,26 +317,33 @@ export default function Page() {
       <section className="py-16 md:py-24 bg-gray-900/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 md:mb-16">
-            <span className="text-indigo-400 font-semibold text-sm uppercase tracking-wider">The Evolution</span>
+            <span className="text-indigo-400 font-semibold text-sm uppercase tracking-wider">
+              The Evolution
+            </span>
             <h2 className="mt-3 text-3xl font-extrabold text-white sm:text-4xl">
-              From Overseerr & Jellyseerr to <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">Seerr</span>
+              From Overseerr & Jellyseerr to{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">
+                Seerr
+              </span>
             </h2>
             <p className="mt-4 max-w-2xl mx-auto text-lg text-gray-400">
-              Seerr unifies the best of both projects into a single, powerful application 
-              that works with all major media servers.
+              Seerr unifies the best of both projects into a single, powerful
+              application that works with all major media servers.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {evolutionPoints.map((point) => (
-              <div 
+              <div
                 key={point.title}
                 className="relative p-6 rounded-xl bg-gray-800/50 border border-gray-700/50 hover:border-indigo-500/50 transition-all group"
               >
                 <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                   <point.icon className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-lg font-semibold text-white mb-2">{point.title}</h3>
+                <h3 className="text-lg font-semibold text-white mb-2">
+                  {point.title}
+                </h3>
                 <p className="text-gray-400 text-sm">{point.description}</p>
               </div>
             ))}
@@ -326,13 +356,16 @@ export default function Page() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
             <div>
-              <span className="text-indigo-400 font-semibold text-sm uppercase tracking-wider">What&apos;s New</span>
+              <span className="text-indigo-400 font-semibold text-sm uppercase tracking-wider">
+                What&apos;s New
+              </span>
               <h2 className="mt-3 text-3xl font-extrabold text-white sm:text-4xl">
                 Built for the modern media server
               </h2>
               <p className="mt-4 text-lg text-gray-400">
-                Seerr brings powerful new features that weren&apos;t available in the original projects, 
-                making media management easier than ever.
+                Seerr brings powerful new features that weren&apos;t available
+                in the original projects, making media management easier than
+                ever.
               </p>
 
               <ul className="mt-8 space-y-4">
@@ -349,8 +382,18 @@ export default function Page() {
                 className="mt-8 inline-flex items-center text-indigo-400 hover:text-indigo-300 font-medium"
               >
                 Read the full changelog
-                <svg className="ml-2 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                <svg
+                  className="ml-2 w-4 h-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
                 </svg>
               </a>
             </div>
@@ -400,14 +443,17 @@ export default function Page() {
                 The best way to discover media
               </h2>
               <p className="mt-4 text-lg text-gray-400">
-                Seerr helps you find media you <em className="font-semibold text-gray-200">want</em> to watch. 
-                With inline recommendations and suggestions, you&apos;ll find yourself deeper and deeper in 
-                a rabbit hole of content you never knew you just had to have.
+                Seerr helps you find media you{' '}
+                <em className="font-semibold text-gray-200">want</em> to watch.
+                With inline recommendations and suggestions, you&apos;ll find
+                yourself deeper and deeper in a rabbit hole of content you never
+                knew you just had to have.
               </p>
               <div className="mt-8 pt-8 border-t border-gray-700">
                 <p className="text-gray-400">
-                  Media pages display organized, easy-to-digest information. We show you the information 
-                  you care about: ratings, the cast and crew, streaming availability, and more.
+                  Media pages display organized, easy-to-digest information. We
+                  show you the information you care about: ratings, the cast and
+                  crew, streaming availability, and more.
                 </p>
               </div>
             </div>
@@ -427,12 +473,13 @@ export default function Page() {
                 Requesting has never been so easy
               </h2>
               <p className="mt-4 text-lg text-gray-400">
-                Seerr presents you and your users with a request interface that is incredibly 
-                easy to understand and use. Users can select the exact seasons they want to watch.
+                Seerr presents you and your users with a request interface that
+                is incredibly easy to understand and use. Users can select the
+                exact seasons they want to watch.
               </p>
               <p className="mt-4 text-lg text-gray-400">
-                Advanced users can use the &ldquo;Advanced Requests&rdquo; options to change 
-                destination folders and quality profiles.
+                Advanced users can use the &ldquo;Advanced Requests&rdquo;
+                options to change destination folders and quality profiles.
               </p>
             </div>
 
@@ -458,12 +505,15 @@ export default function Page() {
       <section className="py-16 md:py-24 bg-gray-800/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 md:mb-16">
-            <span className="text-indigo-400 font-semibold text-sm uppercase tracking-wider">Integrations</span>
+            <span className="text-indigo-400 font-semibold text-sm uppercase tracking-wider">
+              Integrations
+            </span>
             <h2 className="mt-3 text-3xl font-extrabold text-white sm:text-4xl">
               Works with your favorite tools
             </h2>
             <p className="mt-4 max-w-2xl mx-auto text-lg text-gray-400">
-              Seerr integrates seamlessly with all major media servers and automation tools.
+              Seerr integrates seamlessly with all major media servers and
+              automation tools.
             </p>
           </div>
 
@@ -474,10 +524,22 @@ export default function Page() {
                 className="flex flex-col items-center p-6 rounded-xl bg-gray-800/50 border border-gray-700/50 hover:border-indigo-500/50 hover:bg-gray-800 transition-all group"
               >
                 <div className="w-16 h-16 rounded-xl bg-gray-700/50 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <ServerIcon className="w-8 h-8 text-indigo-400" />
+                  {integration.logo ? (
+                    <img
+                      src={integration.logo}
+                      alt={`${integration.name} logo`}
+                      className="w-10 h-10 object-contain"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ) : (
+                    <ServerIcon className="w-8 h-8 text-indigo-400" />
+                  )}
                 </div>
                 <h3 className="text-white font-semibold">{integration.name}</h3>
-                <p className="text-gray-500 text-sm text-center mt-1">{integration.description}</p>
+                <p className="text-gray-500 text-sm text-center mt-1">
+                  {integration.description}
+                </p>
               </div>
             ))}
           </div>
@@ -485,15 +547,18 @@ export default function Page() {
       </section>
 
       {/* Features Grid Section */}
-      <section className="bg-gradient-to-br from-purple-900/80 to-indigo-900/80 py-16 md:py-24">
+      <section
+        id="features"
+        className="bg-gradient-to-br from-purple-900/80 to-indigo-900/80 py-16 md:py-24"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 md:mb-16">
             <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
               A request system built for ease of use
             </h2>
             <p className="mt-4 max-w-3xl mx-auto text-lg text-indigo-200">
-              Seerr aims to make you and your user&apos;s lives easier than ever before. 
-              Here are some of the features that make it special:
+              Seerr aims to make you and your user&apos;s lives easier than ever
+              before. Here are some of the features that make it special:
             </p>
           </div>
 
@@ -504,10 +569,15 @@ export default function Page() {
                   {feature.image ? (
                     feature.image
                   ) : (
-                    <feature.icon className="w-6 h-6 text-white" aria-hidden="true" />
+                    <feature.icon
+                      className="w-6 h-6 text-white"
+                      aria-hidden="true"
+                    />
                   )}
                 </div>
-                <h3 className="text-lg font-semibold text-white mb-2">{feature.name}</h3>
+                <h3 className="text-lg font-semibold text-white mb-2">
+                  {feature.name}
+                </h3>
                 <p className="text-indigo-200 text-sm">{feature.description}</p>
               </div>
             ))}
@@ -519,12 +589,15 @@ export default function Page() {
       <section className="py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 md:mb-16">
-            <span className="text-indigo-400 font-semibold text-sm uppercase tracking-wider">Community</span>
+            <span className="text-indigo-400 font-semibold text-sm uppercase tracking-wider">
+              Community
+            </span>
             <h2 className="mt-3 text-3xl font-extrabold text-white sm:text-4xl">
               Built by the community, for the community
             </h2>
             <p className="mt-4 max-w-2xl mx-auto text-lg text-gray-400">
-              Seerr is open source and thrives thanks to our amazing community of contributors and users.
+              Seerr is open source and thrives thanks to our amazing community
+              of contributors and users.
             </p>
           </div>
 
@@ -536,12 +609,24 @@ export default function Page() {
               className="p-8 rounded-xl bg-gray-800/50 border border-gray-700/50 hover:border-indigo-500/50 transition-all group text-center"
             >
               <div className="w-16 h-16 mx-auto rounded-full bg-gray-700/50 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                  <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+                <svg
+                  className="w-8 h-8 text-white"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                    clipRule="evenodd"
+                  />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-white mb-2">Contribute on GitHub</h3>
-              <p className="text-gray-400">Help us build new features, fix bugs, or improve documentation.</p>
+              <h3 className="text-xl font-semibold text-white mb-2">
+                Contribute on GitHub
+              </h3>
+              <p className="text-gray-400">
+                Help us build new features, fix bugs, or improve documentation.
+              </p>
             </a>
 
             <a
@@ -551,12 +636,20 @@ export default function Page() {
               className="p-8 rounded-xl bg-gray-800/50 border border-gray-700/50 hover:border-indigo-500/50 transition-all group text-center"
             >
               <div className="w-16 h-16 mx-auto rounded-full bg-indigo-600/50 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <svg className="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/>
+                <svg
+                  className="w-8 h-8 text-white"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-white mb-2">Join our Discord</h3>
-              <p className="text-gray-400">Get help, share ideas, and connect with other Seerr users.</p>
+              <h3 className="text-xl font-semibold text-white mb-2">
+                Join our Discord
+              </h3>
+              <p className="text-gray-400">
+                Get help, share ideas, and connect with other Seerr users.
+              </p>
             </a>
 
             <a
@@ -566,12 +659,26 @@ export default function Page() {
               className="p-8 rounded-xl bg-gray-800/50 border border-gray-700/50 hover:border-indigo-500/50 transition-all group text-center"
             >
               <div className="w-16 h-16 mx-auto rounded-full bg-gray-700/50 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                <svg
+                  className="w-8 h-8 text-white"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                  />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-white mb-2">Read the Docs</h3>
-              <p className="text-gray-400">Comprehensive guides for installation, configuration, and usage.</p>
+              <h3 className="text-xl font-semibold text-white mb-2">
+                Read the Docs
+              </h3>
+              <p className="text-gray-400">
+                Comprehensive guides for installation, configuration, and usage.
+              </p>
             </a>
           </div>
         </div>
@@ -588,8 +695,13 @@ export default function Page() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {faqs.map((faq) => (
-              <div key={faq.id} className="p-6 rounded-xl bg-gray-800/50 border border-gray-700/50">
-                <h3 className="text-lg font-semibold text-white mb-3">{faq.question}</h3>
+              <div
+                key={faq.id}
+                className="p-6 rounded-xl bg-gray-800/50 border border-gray-700/50"
+              >
+                <h3 className="text-lg font-semibold text-white mb-3">
+                  {faq.question}
+                </h3>
                 <p className="text-gray-400">{faq.answer}</p>
               </div>
             ))}
@@ -608,8 +720,9 @@ export default function Page() {
                   Ready to get started?
                 </h2>
                 <p className="mt-4 text-lg text-indigo-100">
-                  Seerr is easy to set up with Docker or one of our other installation methods. 
-                  Join thousands of users who have simplified their media request workflow.
+                  Seerr is easy to set up with Docker or one of our other
+                  installation methods. Join thousands of users who have
+                  simplified their media request workflow.
                 </p>
                 <div className="mt-8 flex flex-col sm:flex-row gap-4">
                   <a
@@ -626,7 +739,7 @@ export default function Page() {
                   </a>
                 </div>
               </div>
-              
+
               {/* Screenshot Placeholder */}
               <div className="hidden lg:block p-8">
                 <div className="relative rounded-xl overflow-hidden shadow-2xl transform translate-x-8 -translate-y-4">
@@ -645,7 +758,6 @@ export default function Page() {
           </div>
         </div>
       </section>
-
     </>
   );
 }
