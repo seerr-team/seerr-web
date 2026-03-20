@@ -71,7 +71,7 @@ function isFeatureRelease(
 const GITHUB_FETCH_TIMEOUT_MS = 5000;
 const AI_TAGLINE_TIMEOUT_MS = 5000;
 const DEFAULT_RELEASE_SCAN_WINDOW = 25;
-const RELEASE_SUMMARY_CACHE_VERSION = 'v3';
+const RELEASE_SUMMARY_CACHE_VERSION = 'v4';
 
 function debugReleaseSummaryLog(message: string, meta?: Record<string, unknown>) {
   if (process.env.RELEASE_SUMMARY_DEBUG !== '1') return;
@@ -93,40 +93,9 @@ function getReleaseScanWindow(): number {
   return Math.min(Math.max(parsedValue, 1), 100);
 }
 
-function canGenerateTaglineWithAI(): {
-  enabled: boolean;
-  model: string;
-  reason?: string;
-} {
+function getTaglineModel(): string {
   const model = process.env.RELEASE_TAGLINE_MODEL || 'openai/gpt-4o-mini';
-  const hasKnownApiKey = Boolean(
-    process.env.OPENAI_API_KEY ||
-      process.env.AI_GATEWAY_API_KEY ||
-      process.env.OPENROUTER_API_KEY ||
-      process.env.VERCEL_AI_GATEWAY_API_KEY ||
-      process.env.AI_API_KEY
-  );
-
-  if (!model.trim()) {
-    return {
-      enabled: false,
-      model,
-      reason: 'No RELEASE_TAGLINE_MODEL configured.',
-    };
-  }
-
-  // For explicit OpenAI provider models, require at least one known key.
-  // For other providers/model routers, allow execution and let provider runtime validate.
-  if (model.startsWith('openai/') && !hasKnownApiKey) {
-    return {
-      enabled: false,
-      model,
-      reason:
-        'OpenAI model selected but no known AI API key env var is present.',
-    };
-  }
-
-  return { enabled: true, model };
+  return model.trim();
 }
 
 async function fetchLatestReleases(
@@ -170,11 +139,18 @@ async function generateTagline(
   releaseName: string,
   releaseBody: string
 ): Promise<string> {
-  const fallbackTagline = (): string => {
+  const fallbackTagline = (reason: string): string => {
+    console.warn(`[release-summary] Using fallback tagline: ${reason}`);
+
     // Try to use the release name if it's descriptive
+    // Ignore generic titles like "Release v3.1.0".
+    const looksGenericReleaseTitle = /^release\s+v?\d+\.\d+\.\d+/i.test(
+      releaseName.trim()
+    );
     if (
       releaseName &&
-      releaseName.toLowerCase() !== releaseName.replace(/[^\d.]/g, '')
+      releaseName.toLowerCase() !== releaseName.replace(/[^\d.]/g, '') &&
+      !looksGenericReleaseTitle
     ) {
       // Release name has more than just version number
       return (
@@ -186,19 +162,15 @@ async function generateTagline(
     return 'New Features & Improvements';
   };
 
-  const aiEligibility = canGenerateTaglineWithAI();
-  if (!aiEligibility.enabled) {
-    console.warn(
-      `[release-summary] Skipping AI tagline generation: ${aiEligibility.reason}`
-    );
-    return fallbackTagline();
-  }
-
   // Try AI generation if available
   try {
+    const model = getTaglineModel();
+    if (!model) {
+      return fallbackTagline('no RELEASE_TAGLINE_MODEL available');
+    }
+
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), AI_TAGLINE_TIMEOUT_MS);
-    const model = aiEligibility.model;
 
     const { text } = await generateText({
       model,
@@ -240,7 +212,7 @@ Your tagline:`,
     } else {
       console.error('[release-summary] Failed to generate AI tagline:', error);
     }
-    return fallbackTagline();
+    return fallbackTagline('AI generation failed');
   }
 }
 
