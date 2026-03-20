@@ -71,6 +71,16 @@ function isFeatureRelease(
 const GITHUB_FETCH_TIMEOUT_MS = 5000;
 const AI_TAGLINE_TIMEOUT_MS = 5000;
 const DEFAULT_RELEASE_SCAN_WINDOW = 25;
+const RELEASE_SUMMARY_CACHE_VERSION = 'v3';
+
+function debugReleaseSummaryLog(message: string, meta?: Record<string, unknown>) {
+  if (process.env.RELEASE_SUMMARY_DEBUG !== '1') return;
+  if (meta) {
+    console.info(`[release-summary] ${message}`, meta);
+    return;
+  }
+  console.info(`[release-summary] ${message}`);
+}
 
 function getReleaseScanWindow(): number {
   const rawValue = process.env.RELEASE_SCAN_WINDOW;
@@ -213,6 +223,11 @@ Examples of good taglines:
 Your tagline:`,
     }).finally(() => clearTimeout(timeout));
 
+    debugReleaseSummaryLog('AI tagline generated successfully.', {
+      model,
+      outputLength: text?.length ?? 0,
+    });
+
     return text
       .trim()
       .replace(/^["']|["']$/g, '')
@@ -241,8 +256,13 @@ const getCachedReleaseSummary = unstable_cache(
       //
       // Fetch enough releases to cover typical sequences of patch releases.
       const releases = await fetchLatestReleases();
+      debugReleaseSummaryLog('Fetched stable releases.', {
+        stableReleaseCount: releases.length,
+        scanWindow: getReleaseScanWindow(),
+      });
 
       if (!releases || releases.length === 0) {
+        console.warn('[release-summary] No stable releases returned from GitHub.');
         return null;
       }
 
@@ -281,8 +301,17 @@ const getCachedReleaseSummary = unstable_cache(
 
       // No minor/major release found in the scanned window.
       if (!featureRelease || featureReleaseIndex === null) {
+        console.warn(
+          '[release-summary] No feature release found in scanned stable releases.',
+          { stableReleaseCount: releases.length, scanWindow: getReleaseScanWindow() }
+        );
         return null;
       }
+
+      debugReleaseSummaryLog('Selected feature release for badge.', {
+        tag: featureRelease.tag_name,
+        index: featureReleaseIndex,
+      });
 
       const tagline = await generateTagline(
         featureRelease.name || featureRelease.tag_name,
@@ -300,10 +329,10 @@ const getCachedReleaseSummary = unstable_cache(
       return null;
     }
   },
-  ['release-summary-v2'],
+  [`release-summary-${RELEASE_SUMMARY_CACHE_VERSION}`],
   {
     revalidate: 86400, // Cache for 24 hours
-    tags: ['release-summary-v2'],
+    tags: [`release-summary-${RELEASE_SUMMARY_CACHE_VERSION}`],
   }
 );
 
