@@ -6,7 +6,7 @@ import React, {
   HTMLAttributes,
   ForwardRefRenderFunction,
 } from 'react';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 
 interface ImageFaderProps extends HTMLAttributes<HTMLDivElement> {
   backgroundImages: string[];
@@ -56,7 +56,13 @@ const ImageFader: ForwardRefRenderFunction<HTMLDivElement, ImageFaderProps> = (
           }`}
           {...props}
         >
-          <Image src={imageUrl} layout="fill" objectFit="cover" />
+          <Image
+            src={imageUrl}
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover"
+          />
           <div
             className="absolute inset-0"
             style={{ backgroundImage: gradient }}

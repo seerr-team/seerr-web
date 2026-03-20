@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import ReleaseBadge from '@components/ReleaseBadge';
 import {
   ClockIcon,
@@ -300,12 +301,14 @@ export default function Page() {
             {/* Hero Screenshot - Placeholder for user to provide */}
             <div className="mt-12 w-full overflow-hidden bg-gray-800/50 backdrop-blur rounded-xl shadow-2xl border border-gray-700/50">
               <div className="relative aspect-video bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
-                <img
+                <Image
                   src="/screenshots/screen_main.jpg"
                   alt="Seerr main dashboard screenshot"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                  decoding="async"
+                  width={1920}
+                  height={1080}
+                  priority
+                  sizes="(max-width: 768px) 100vw, 1280px"
+                  className="w-full h-auto object-cover"
                 />
               </div>
             </div>
@@ -401,13 +404,13 @@ export default function Page() {
             {/* Screenshot Placeholder */}
             <div className="mt-8 lg:mt-0">
               <div className="relative rounded-xl overflow-hidden shadow-2xl border border-gray-700/50">
-                <div className="aspect-[231/157] bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
-                  <img
+                <div className="relative aspect-[231/157] bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
+                  <Image
                     src="/screenshots/screen_feature_1.png"
                     alt="Seerr feature screenshot"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
                     className="w-full h-full object-contain"
-                    loading="lazy"
-                    decoding="async"
                   />
                 </div>
               </div>
@@ -423,13 +426,13 @@ export default function Page() {
             <div className="order-2 lg:order-1 mt-8 lg:mt-0">
               {/* Screenshot Placeholder */}
               <div className="relative rounded-xl overflow-hidden shadow-2xl">
-                <div className="aspect-[231/157] bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center border border-gray-700/50">
-                  <img
+                <div className="relative aspect-[231/157] bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center border border-gray-700/50">
+                  <Image
                     src="/screenshots/screen_feature_filters.png"
                     alt="Seerr request filters screenshot"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
                     className="w-full h-full object-contain"
-                    loading="lazy"
-                    decoding="async"
                   />
                 </div>
               </div>
@@ -486,13 +489,13 @@ export default function Page() {
             <div className="mt-8 lg:mt-0">
               {/* Screenshot Placeholder */}
               <div className="relative rounded-xl overflow-hidden shadow-2xl">
-                <div className="aspect-[231/157] bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center border border-gray-700/50">
-                  <img
+                <div className="relative aspect-[231/157] bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center border border-gray-700/50">
+                  <Image
                     src="/screenshots/screen_feature_2.png"
                     alt="Seerr request screenshot"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
                     className="w-full h-full object-contain"
-                    loading="lazy"
-                    decoding="async"
                   />
                 </div>
               </div>
@@ -743,13 +746,13 @@ export default function Page() {
               {/* Screenshot Placeholder */}
               <div className="hidden lg:block p-8">
                 <div className="relative rounded-xl overflow-hidden shadow-2xl transform translate-x-8 -translate-y-4">
-                  <div className="aspect-[231/157] bg-gray-900/30 backdrop-blur flex items-center justify-center">
-                    <img
+                  <div className="relative aspect-[231/157] bg-gray-900/30 backdrop-blur flex items-center justify-center">
+                    <Image
                       src="/screenshots/screen_trending.png"
                       alt="Seerr trending screenshot"
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
                       className="w-full h-full object-contain"
-                      loading="lazy"
-                      decoding="async"
                     />
                   </div>
                 </div>

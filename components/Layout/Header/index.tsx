@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import Transition from '../../Transition';
 import useClickOutside from 'hooks/useClickOutside';
 
