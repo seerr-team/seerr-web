@@ -83,14 +83,40 @@ function getReleaseScanWindow(): number {
   return Math.min(Math.max(parsedValue, 1), 100);
 }
 
-function canGenerateTaglineWithAI(): boolean {
+function canGenerateTaglineWithAI(): {
+  enabled: boolean;
+  model: string;
+  reason?: string;
+} {
   const model = process.env.RELEASE_TAGLINE_MODEL || 'openai/gpt-4o-mini';
-  const hasApiKey = Boolean(
+  const hasKnownApiKey = Boolean(
     process.env.OPENAI_API_KEY ||
       process.env.AI_GATEWAY_API_KEY ||
-      process.env.OPENROUTER_API_KEY
+      process.env.OPENROUTER_API_KEY ||
+      process.env.VERCEL_AI_GATEWAY_API_KEY ||
+      process.env.AI_API_KEY
   );
-  return Boolean(model) && hasApiKey;
+
+  if (!model.trim()) {
+    return {
+      enabled: false,
+      model,
+      reason: 'No RELEASE_TAGLINE_MODEL configured.',
+    };
+  }
+
+  // For explicit OpenAI provider models, require at least one known key.
+  // For other providers/model routers, allow execution and let provider runtime validate.
+  if (model.startsWith('openai/') && !hasKnownApiKey) {
+    return {
+      enabled: false,
+      model,
+      reason:
+        'OpenAI model selected but no known AI API key env var is present.',
+    };
+  }
+
+  return { enabled: true, model };
 }
 
 async function fetchLatestReleases(
@@ -127,53 +153,13 @@ async function fetchLatestReleases(
 }
 
 /**
- * Extract a short tagline from release notes without AI
- * Looks for common patterns in changelogs
- */
-function extractTaglineFromNotes(releaseBody: string): string | null {
-  if (!releaseBody) return null;
-
-  // Common patterns to look for in release notes
-  const patterns = [
-    /##\s*(?:Highlights?|What's New|Features?)\s*\n+[*-]?\s*(.+)/i,
-    /###?\s*(?:Added|New)\s*\n+[*-]\s*(.+)/i,
-    /[*-]\s*(?:Add(?:ed)?|New|Introduce[ds]?|Support(?:s|ed)?)\s+(.+?)(?:\n|$)/i,
-  ];
-
-  for (const pattern of patterns) {
-    const match = releaseBody.match(pattern);
-    if (match && match[1]) {
-      let tagline = match[1].trim();
-      // Clean up markdown and limit length
-      tagline = tagline
-        .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // Remove markdown links
-        .replace(/[`*_]/g, '') // Remove markdown formatting
-        .replace(/\s+/g, ' ') // Normalize whitespace
-        .trim();
-
-      // Limit to reasonable length (around 8 words)
-      const words = tagline.split(' ').slice(0, 8);
-      return words.join(' ');
-    }
-  }
-
-  return null;
-}
-
-/**
- * Generate a catchy tagline from release notes using AI
- * Falls back to extracting from notes or generic tagline
+ * Generate a catchy tagline from release notes using AI when configured.
+ * Falls back to a descriptive release name or a generic tagline.
  */
 async function generateTagline(
   releaseName: string,
   releaseBody: string
 ): Promise<string> {
-  // First try to extract from release notes (no AI needed)
-  const extractedTagline = extractTaglineFromNotes(releaseBody);
-  if (extractedTagline) {
-    return extractedTagline;
-  }
-
   const fallbackTagline = (): string => {
     // Try to use the release name if it's descriptive
     if (
@@ -190,7 +176,11 @@ async function generateTagline(
     return 'New Features & Improvements';
   };
 
-  if (!canGenerateTaglineWithAI()) {
+  const aiEligibility = canGenerateTaglineWithAI();
+  if (!aiEligibility.enabled) {
+    console.warn(
+      `[release-summary] Skipping AI tagline generation: ${aiEligibility.reason}`
+    );
     return fallbackTagline();
   }
 
@@ -198,7 +188,7 @@ async function generateTagline(
   try {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), AI_TAGLINE_TIMEOUT_MS);
-    const model = process.env.RELEASE_TAGLINE_MODEL || 'openai/gpt-4o-mini';
+    const model = aiEligibility.model;
 
     const { text } = await generateText({
       model,
@@ -228,7 +218,13 @@ Your tagline:`,
       .replace(/^["']|["']$/g, '')
       .replace(/[.!]$/, '');
   } catch (error) {
-    console.error('Failed to generate AI tagline:', error);
+    if (error instanceof Error && error.name === 'AbortError') {
+      console.warn(
+        `[release-summary] AI tagline generation timed out after ${AI_TAGLINE_TIMEOUT_MS}ms`
+      );
+    } else {
+      console.error('[release-summary] Failed to generate AI tagline:', error);
+    }
     return fallbackTagline();
   }
 }
