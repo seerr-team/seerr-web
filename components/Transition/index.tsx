@@ -41,6 +41,10 @@ const CSSTransition: React.FC<CSSTransitionProps> = ({
   appear,
   children,
 }) => {
+  // `react-transition-group@4` uses `findDOMNode` by default, which React 19 removed.
+  // Using `nodeRef` keeps it compatible without changing the layout.
+  const nodeRef = useRef<HTMLElement | null>(null);
+
   const enterClasses = enter.split(' ').filter((s) => s.length);
   const enterFromClasses = enterFrom.split(' ').filter((s) => s.length);
   const enterToClasses = enterTo.split(' ').filter((s) => s.length);
@@ -56,36 +60,50 @@ const CSSTransition: React.FC<CSSTransitionProps> = ({
     classes.length && node.classList.remove(...classes);
   };
 
+  const childWithRef = React.isValidElement(children)
+    ? React.cloneElement(children as React.ReactElement<any>, { ref: nodeRef as any })
+    : children;
+
   return (
     <ReactCSSTransition
       appear={appear}
       unmountOnExit
       in={show}
-      addEndListener={(node, done) => {
-        node.addEventListener('transitionend', done, false);
+      nodeRef={nodeRef as unknown as React.RefObject<HTMLElement>}
+      addEndListener={(done) => {
+        const el = nodeRef.current;
+        el?.addEventListener('transitionend', done, false);
       }}
-      onEnter={(node: HTMLElement) => {
-        addClasses(node, [...enterClasses, ...enterFromClasses]);
+      onEnter={() => {
+        const node = nodeRef.current;
+        node && addClasses(node, [...enterClasses, ...enterFromClasses]);
       }}
-      onEntering={(node: HTMLElement) => {
+      onEntering={() => {
+        const node = nodeRef.current;
+        if (!node) return;
         removeClasses(node, enterFromClasses);
         addClasses(node, enterToClasses);
       }}
-      onEntered={(node: HTMLElement) => {
-        removeClasses(node, [...enterToClasses, ...enterClasses]);
+      onEntered={() => {
+        const node = nodeRef.current;
+        node && removeClasses(node, [...enterToClasses, ...enterClasses]);
       }}
-      onExit={(node) => {
-        addClasses(node, [...leaveClasses, ...leaveFromClasses]);
+      onExit={() => {
+        const node = nodeRef.current;
+        node && addClasses(node, [...leaveClasses, ...leaveFromClasses]);
       }}
-      onExiting={(node) => {
+      onExiting={() => {
+        const node = nodeRef.current;
+        if (!node) return;
         removeClasses(node, leaveFromClasses);
         addClasses(node, leaveToClasses);
       }}
-      onExited={(node) => {
-        removeClasses(node, [...leaveToClasses, ...leaveClasses]);
+      onExited={() => {
+        const node = nodeRef.current;
+        node && removeClasses(node, [...leaveToClasses, ...leaveClasses]);
       }}
     >
-      {children}
+      {childWithRef}
     </ReactCSSTransition>
   );
 };

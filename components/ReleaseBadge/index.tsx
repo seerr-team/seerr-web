@@ -37,7 +37,7 @@ export default async function ReleaseBadge({
       <span className="text-gray-400">-</span>
       <span className="group-hover:text-indigo-200 transition-colors">{release.tagline}</span>
       <svg 
-        className="w-4 h-4 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" 
+        className="w-4 h-4 opacity-60 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" 
         fill="none" 
         viewBox="0 0 24 24" 
         stroke="currentColor"

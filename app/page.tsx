@@ -133,7 +133,6 @@ const evolutionPoints = [
 const stats = [
   { label: 'GitHub Stars', value: '10,300+' },
   { label: 'Contributors', value: '190+' },
-  { label: 'Releases', value: '38' },
   { label: 'Languages', value: '25+' },
 ];
 
@@ -261,9 +260,14 @@ export default function Page() {
             </div>
 
             {/* Stats Row */}
-            <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl">
-              {stats.map((stat) => (
-                <div key={stat.label} className="text-center">
+            <div className="mt-12 grid grid-cols-2 md:grid-cols-3 gap-8 max-w-3xl">
+              {stats.map((stat, idx) => (
+                <div
+                  key={stat.label}
+                  className={`text-center ${
+                    idx === stats.length - 1 ? 'col-span-2 md:col-span-1' : ''
+                  }`}
+                >
                   <div className="text-3xl font-bold text-white">{stat.value}</div>
                   <div className="text-sm text-gray-400">{stat.label}</div>
                 </div>
@@ -271,16 +275,15 @@ export default function Page() {
             </div>
 
             {/* Hero Screenshot - Placeholder for user to provide */}
-            <div className="mt-16 w-full overflow-hidden bg-gray-800/50 backdrop-blur rounded-xl shadow-2xl border border-gray-700/50">
+            <div className="mt-12 w-full overflow-hidden bg-gray-800/50 backdrop-blur rounded-xl shadow-2xl border border-gray-700/50">
               <div className="relative aspect-video bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
-                {/* Placeholder - replace with actual screenshot */}
-                <div className="text-center p-8">
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-indigo-500/20 flex items-center justify-center">
-                    <VideoCameraIcon className="w-8 h-8 text-indigo-400" />
-                  </div>
-                  <p className="text-gray-400 text-lg">Main Dashboard Screenshot</p>
-                  <p className="text-gray-500 text-sm mt-2">Replace with: /screenshots/screen_main.jpg</p>
-                </div>
+                <img
+                  src="/screenshots/screen_main.jpg"
+                  alt="Seerr main dashboard screenshot"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
             </div>
           </div>
@@ -288,9 +291,9 @@ export default function Page() {
       </section>
 
       {/* Evolution Section */}
-      <section className="py-24 bg-gray-900/50">
+      <section className="py-16 md:py-24 bg-gray-900/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12 md:mb-16">
             <span className="text-indigo-400 font-semibold text-sm uppercase tracking-wider">The Evolution</span>
             <h2 className="mt-3 text-3xl font-extrabold text-white sm:text-4xl">
               From Overseerr & Jellyseerr to <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">Seerr</span>
@@ -319,7 +322,7 @@ export default function Page() {
       </section>
 
       {/* What's New Section */}
-      <section className="py-24">
+      <section className="py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
             <div>
@@ -353,16 +356,16 @@ export default function Page() {
             </div>
 
             {/* Screenshot Placeholder */}
-            <div className="mt-12 lg:mt-0">
+            <div className="mt-8 lg:mt-0">
               <div className="relative rounded-xl overflow-hidden shadow-2xl border border-gray-700/50">
-                <div className="aspect-[4/3] bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-purple-500/20 flex items-center justify-center">
-                      <SparklesIcon className="w-8 h-8 text-purple-400" />
-                    </div>
-                    <p className="text-gray-400 text-lg">Feature Screenshot</p>
-                    <p className="text-gray-500 text-sm mt-2">Replace with app screenshot</p>
-                  </div>
+                <div className="aspect-[231/157] bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
+                  <img
+                    src="/screenshots/screen_feature_1.png"
+                    alt="Seerr feature screenshot"
+                    className="w-full h-full object-contain"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
               </div>
             </div>
@@ -371,25 +374,25 @@ export default function Page() {
       </section>
 
       {/* Media Discovery Section */}
-      <section className="relative py-24 overflow-hidden">
+      <section className="relative py-16 md:py-24 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="lg:grid lg:grid-cols-2 lg:gap-24 items-center">
-            <div className="order-2 lg:order-1">
+          <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-24 items-center">
+            <div className="order-2 lg:order-1 mt-8 lg:mt-0">
               {/* Screenshot Placeholder */}
               <div className="relative rounded-xl overflow-hidden shadow-2xl">
-                <div className="aspect-[4/3] bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center border border-gray-700/50">
-                  <div className="text-center p-8">
-                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-indigo-500/20 flex items-center justify-center">
-                      <SparklesIcon className="w-8 h-8 text-indigo-400" />
-                    </div>
-                    <p className="text-gray-400 text-lg">Movie Details Screenshot</p>
-                    <p className="text-gray-500 text-sm mt-2">Replace with: /screenshots/screen_movie_details.jpg</p>
-                  </div>
+                <div className="aspect-[231/157] bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center border border-gray-700/50">
+                  <img
+                    src="/screenshots/screen_feature_filters.png"
+                    alt="Seerr request filters screenshot"
+                    className="w-full h-full object-contain"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
               </div>
             </div>
 
-            <div className="order-1 lg:order-2 mb-12 lg:mb-0">
+            <div className="order-1 lg:order-2">
               <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center mb-6">
                 <SparklesIcon className="w-6 h-6 text-white" />
               </div>
@@ -413,7 +416,7 @@ export default function Page() {
       </section>
 
       {/* Request System Section */}
-      <section className="py-24">
+      <section className="py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="lg:grid lg:grid-cols-2 lg:gap-24 items-center">
             <div>
@@ -433,17 +436,17 @@ export default function Page() {
               </p>
             </div>
 
-            <div className="mt-12 lg:mt-0">
+            <div className="mt-8 lg:mt-0">
               {/* Screenshot Placeholder */}
               <div className="relative rounded-xl overflow-hidden shadow-2xl">
-                <div className="aspect-[4/3] bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center border border-gray-700/50">
-                  <div className="text-center p-8">
-                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-purple-500/20 flex items-center justify-center">
-                      <ClockIcon className="w-8 h-8 text-purple-400" />
-                    </div>
-                    <p className="text-gray-400 text-lg">Season Request Screenshot</p>
-                    <p className="text-gray-500 text-sm mt-2">Replace with: /screenshots/screen_season_requests.jpg</p>
-                  </div>
+                <div className="aspect-[231/157] bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center border border-gray-700/50">
+                  <img
+                    src="/screenshots/screen_feature_2.png"
+                    alt="Seerr request screenshot"
+                    className="w-full h-full object-contain"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
               </div>
             </div>
@@ -452,9 +455,9 @@ export default function Page() {
       </section>
 
       {/* Integrations Section */}
-      <section className="py-24 bg-gray-800/30">
+      <section className="py-16 md:py-24 bg-gray-800/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12 md:mb-16">
             <span className="text-indigo-400 font-semibold text-sm uppercase tracking-wider">Integrations</span>
             <h2 className="mt-3 text-3xl font-extrabold text-white sm:text-4xl">
               Works with your favorite tools
@@ -482,9 +485,9 @@ export default function Page() {
       </section>
 
       {/* Features Grid Section */}
-      <section className="bg-gradient-to-br from-purple-900/80 to-indigo-900/80 py-24">
+      <section className="bg-gradient-to-br from-purple-900/80 to-indigo-900/80 py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12 md:mb-16">
             <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
               A request system built for ease of use
             </h2>
@@ -513,9 +516,9 @@ export default function Page() {
       </section>
 
       {/* Community Section */}
-      <section className="py-24">
+      <section className="py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12 md:mb-16">
             <span className="text-indigo-400 font-semibold text-sm uppercase tracking-wider">Community</span>
             <h2 className="mt-3 text-3xl font-extrabold text-white sm:text-4xl">
               Built by the community, for the community
@@ -575,9 +578,9 @@ export default function Page() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-24 bg-gray-800/30">
+      <section className="py-16 md:py-24 bg-gray-800/30">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12 md:mb-16">
             <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
               Frequently Asked Questions
             </h2>
@@ -595,7 +598,7 @@ export default function Page() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24">
+      <section className="py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-indigo-600 to-purple-600 shadow-2xl">
             <div className="absolute inset-0 bg-grid-white/10 [mask-image:linear-gradient(0deg,transparent,black)]"></div>
@@ -627,14 +630,14 @@ export default function Page() {
               {/* Screenshot Placeholder */}
               <div className="hidden lg:block p-8">
                 <div className="relative rounded-xl overflow-hidden shadow-2xl transform translate-x-8 -translate-y-4">
-                  <div className="aspect-[4/3] bg-gray-900/30 backdrop-blur flex items-center justify-center">
-                    <div className="text-center p-8">
-                      <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-white/20 flex items-center justify-center">
-                        <SparklesIcon className="w-8 h-8 text-white" />
-                      </div>
-                      <p className="text-white/80 text-lg">Trending Screenshot</p>
-                      <p className="text-white/50 text-sm mt-2">Replace with: /screenshots/screen_trending.jpg</p>
-                    </div>
+                  <div className="aspect-[231/157] bg-gray-900/30 backdrop-blur flex items-center justify-center">
+                    <img
+                      src="/screenshots/screen_trending.png"
+                      alt="Seerr trending screenshot"
+                      className="w-full h-full object-contain"
+                      loading="lazy"
+                      decoding="async"
+                    />
                   </div>
                 </div>
               </div>
